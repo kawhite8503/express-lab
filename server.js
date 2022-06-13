@@ -1,6 +1,14 @@
 import express from 'express'
+import { studentData } from './data/student-data.js'
+
+
+//Create Express app server
 
 const app = express()
+
+// Configure the app (app.set)
+
+app.set('view engine', 'ejs')
 
 //Mount routes
 
@@ -9,7 +17,13 @@ app.get('/', function(req,res){
 })
 
 app.get('/home', function (req, res){
-  res.send('<h1>Home Page</h1>')
+  res.render('home')
+})
+
+app.get('/studentData', function(req,res){
+  res.render('studentData/index', {
+    studentData: studentData
+  })
 })
 
 //Tell app to listen on port 3000
